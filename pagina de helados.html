@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helados Deliciosos - Compra</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+        header {
+            background-color: #ff6f61;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .helado {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 15px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .helado:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        .helado img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .boton {
+            background-color: #ff6f61;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .boton:hover {
+            background-color: #e65c50;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .total {
+            font-weight: bold;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Helados Deliciosos</h1>
+    <p>¡Los mejores helados para disfrutar!</p>
+</header>
+
+<div class="container">
+    <h2>Selecciona tu Helado</h2>
+    
+    <div class="helado">
+        <img src="https://via.placeholder.com/300x200?text=Helado+de+Chocolate" alt="Helado de Chocolate">
+        <h3>Helado de Chocolate</h3>
+        <p>Precio: $100</p>
+        <button class="boton" onclick="comprar('Helado de Chocolate', 100)">Comprar</button>
+    </div>
+    <div class="helado">
+        <img src="https://via.placeholder.com/300x200?text=Helado+de+Vainilla" alt="Helado de Vainilla">
+        <h3>Helado de Vainilla</h3>
+        <p>Precio: $90</p>
+        <button class="boton" onclick="comprar('Helado de Vainilla', 90)">Comprar</button>
+    </div>
+    <div class="helado">
+        <img src="https://via.placeholder.com/300x200?text=Helado+de+Fresa" alt="Helado de Fresa">
+        <h3>Helado de Fresa</h3>
+        <p>Precio: $110</p>
+        <button class="boton" onclick="comprar('Helado de Fresa', 110)">Comprar</button>
+    </div>
+    <div class="helado">
+        <img src="https://via.placeholder.com/300x200?text=Helado+de+Menta" alt="Helado de Menta">
+        <h3>Helado de Menta</h3>
+        <p>Precio: $95</p>
+        <button class="boton" onclick="comprar('Helado de Menta', 95)">Comprar</button>
+    </div>
+    <div class="helado">
+        <img src="https://via.placeholder.com/300x200?text=Helado+de+Café" alt="Helado de Café">
+        <h3>Helado de Café</h3>
+        <p>Precio: $120</p>
+        <button class="boton" onclick="comprar('Helado de Café', 120)">Comprar</button>
+    </div>
+    <div class="helado">
+        <img src="https://via.placeholder.com/300x200?text=Helado+de+Frutas" alt="Helado de Frutas">
+        <h3>Helado de Frutas</h3>
+        <p>Precio: $130</p>
+        <button class="boton" onclick="comprar('Helado de Frutas', 130)">Comprar</button>
+    </div>
+
+    <div class="total" id="total">Total a pagar: $0</div>
+
+    <h2>Formulario de Pago</h2>
+    <form id="pagoForm">
+        <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" required>
+        </div>
+        <div class="form-group">
+            <label for="apellido">Apellido:</label>
+            <input type="text" id="apellido" required>
+        </div>
+        <div class="form-group">
+            <label for="metodo">Método de Pago:</label>
+            <select id="metodo" required>
+                <option value="">Selecciona</option>
+                <option value="mercado_pago">Mercado Pago</option>
+            </select>
+        </div>
+        <div class="cbu-info">
+            <strong>CBU para transferencia:</strong>
+            <p>1234567890123456789012</p> <!-- Reemplaza este CBU por el tuyo -->
+        </div>
+        <button type="submit" class="boton">Confirmar Pago</button>
+    </form>
+</div>
+
+<script>
+    let total = 0; // Variable para almacenar el total a pagar
+
+    function comprar(helado, precio) {
+        total += precio; // Sumar el precio del helado seleccionado
+        document.getElementById('total').innerText = `Total a pagar: $${total}`; // Actualizar total
+        alert(`Has añadido ${helado} al carrito. Total a pagar: $${total}`);
+    }
+
+    document.getElementById('pagoForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const nombre = document.getElementById('nombre').value;
+        const apellido = document.getElementById('apellido').value;
+        const metodo = document.getElementById('metodo').value;
+
+        if (metodo === 'mercado_pago') {
+            // Aquí debes generar una preferencia de pago desde tu cuenta de Mercado Pago.
+            const paymentUrl = `https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=YOUR_PREF_ID`; // Reemplaza con tu pref_id
+
+            alert(`Pago confirmado para ${nombre} ${apellido}. Total a pagar: $${total}. Redirigiendo a la aplicación de Mercado Pago...`);
+            window.location.href = paymentUrl; // Redirige al usuario a Mercado Pago
+        }
+    });
+</script>
+
+</body>
+</html>
